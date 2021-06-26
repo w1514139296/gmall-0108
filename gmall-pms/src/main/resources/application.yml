@@ -34,3 +34,6 @@ mybatis-plus:
     db-config:
       id-type: auto
   type-aliases-package: com.atguigu.gmall.pms.entity
+logging:
+  level:
+    com.atguigu.gmall: debug

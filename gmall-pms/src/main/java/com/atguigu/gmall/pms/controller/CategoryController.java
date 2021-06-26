@@ -90,4 +90,10 @@ public class CategoryController {
         return ResponseVo.ok();
     }
 
+    @GetMapping("/parent/{parentId}")
+    public ResponseVo<List<CategoryEntity>>  queryCategoriesByPid(@PathVariable("parentId") Long parentId){
+        List<CategoryEntity> categoryEntities = categoryService.queryCategoriesByPid(parentId);
+        return ResponseVo.ok(categoryEntities);
+    }
+
 }

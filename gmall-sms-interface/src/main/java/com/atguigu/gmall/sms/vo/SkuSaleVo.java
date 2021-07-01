@@ -7,19 +7,20 @@ import java.util.List;
 
 @Data
 public class SkuSaleVo {
+
     private Long skuId;
 
-    //积分优惠字段
+    // 积分优惠字段
     private BigDecimal growBounds;
     private BigDecimal buyBounds;
     private List<Integer> work;
 
-    //打折信息字段
+    // 打折信息
     private Integer fullCount;
     private BigDecimal discount;
     private Integer ladderAddOther;
 
-    //满减优惠字段
+    // 满减信息
     private BigDecimal fullPrice;
     private BigDecimal reducePrice;
     private Integer fullAddOther;

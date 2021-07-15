@@ -2,16 +2,12 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+import com.atguigu.gmall.pms.vo.GroupVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gmall.pms.entity.AttrGroupEntity;
 import com.atguigu.gmall.pms.service.AttrGroupService;
@@ -30,9 +26,21 @@ import com.atguigu.gmall.common.bean.PageParamVo;
 @RestController
 @RequestMapping("pms/attrgroup")
 public class AttrGroupController {
-
     @Autowired
     private AttrGroupService attrGroupService;
+
+
+    //根据分类id、spuId、skuId查询出所有的规格参数组及组下的规格参数和值
+    @GetMapping("with/attr/value/{cid}")
+    public ResponseVo<List<GroupVo>> queryGroupsWithAttrValuesByCidAndSpuIdAndSkuId(
+            @PathVariable("cid") Long cid,
+            @RequestParam("spuId") Long spuId,
+            @RequestParam("skuId") Long skuId
+    ){
+        List<GroupVo> groupVos = this.attrGroupService.queryGroupsWithAttrValuesByCidAndSpuIdAndSkuId(cid,spuId,skuId);
+        return ResponseVo.ok(groupVos);
+    }
+
 
     @GetMapping("withattrs/{catId}")
     public ResponseVo<List<AttrGroupEntity>> queryGropupsWithAttrsByCid(@PathVariable("catId")Long catId){

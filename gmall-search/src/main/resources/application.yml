@@ -1,5 +1,5 @@
 server:
-  port: 18016
+  port: 18086
 spring:
   cloud:
     nacos:
@@ -20,6 +20,21 @@ spring:
   elasticsearch:
     rest:
       uris: 192.168.118.128:9200
+  jackson:
+    default-property-inclusion: non_null
+  thymeleaf:
+    cache: false
+  rabbitmq:
+    port: 5672
+    host: 192.168.118.128
+    virtual-host: /gouge
+    password: gouge
+    username: gouge
+    listener:
+      simple:
+        concurrency: 4
+        prefetch: 1
+        acknowledge-mode: manual
 feign:
   sentinel:
     enabled: true

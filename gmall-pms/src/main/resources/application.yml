@@ -28,6 +28,14 @@ spring:
   redis:
     port: 6379
     host: 192.168.118.128
+  rabbitmq:
+    port: 5672
+    host: 192.168.118.128
+    virtual-host: /gouge
+    password: gouge
+    username: gouge
+    publisher-confirm-type: correlated
+    publisher-returns: true
 feign:
   sentinel:
     enabled: true

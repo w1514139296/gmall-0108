@@ -39,7 +39,7 @@ class GamllSearchApplicationTests {
     void contextLoads() {
         if (!this.elasticsearchRestTemplate.indexExists(Goods.class)) {
             this.elasticsearchRestTemplate.createIndex(Goods.class);
-            this.elasticsearchRestTemplate.putMapping(Goods.class);
+            this.elasticsearchRestTemplate.putMapping(Goods.class); 
         }
 
 

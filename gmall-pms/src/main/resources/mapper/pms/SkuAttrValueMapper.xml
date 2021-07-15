@@ -2,4 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.gmall.pms.mapper.SkuAttrValueMapper">
 
+    <select id="queryMappingBySpuId" resultType="java.util.Map">
+        SELECT GROUP_CONCAT(attr_value ORDER BY attr_id ASC) AS attr_values, sku_id
+        FROM pms_sku_attr_value
+
+        <!--
+            动态sql：
+                if：判断，
+                    test中放判断条件
+                choose:做选择
+                    when：判断，一旦有一个when成立 后续不在执行
+                        test：放判断条件
+                    otherwise：所有的when 都不成立才执行
+                where:添加where关键字，去掉动态sql语句块最前面的一个and或者or
+                set:会在动态sql语句之前添加set关键字，去掉动态sql语句块最后面的一个逗号
+                foreach:遍历
+                      <foreach collection="skuIds" item="skuId" separator="," open="(" close=")">#{skuId}</foreach>
+
+                      接收参数时#{}和${}的区别：
+                                #{}：预编译的，编译成？，防止sql注入，不需要做数据类型的转换；一个参数时默认任意参数名可以接受参数，都可用@Param来指定参数名
+                                ${}：非预编译的，直接sql拼接，不可以防止sql注入，需要手动的做数据类型的转换；一个参数时默认必须是value来接收参数，都可用@Param来指定参数名
+        -->
+
+        where sku_id IN
+                <foreach collection="skuIds" item="skuId" separator="," open="(" close=")">${skuId}</foreach>
+        GROUP BY sku_id;
+    </select>
 </mapper>

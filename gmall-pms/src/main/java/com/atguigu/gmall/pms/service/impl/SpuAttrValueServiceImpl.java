@@ -1,7 +1,11 @@
 package com.atguigu.gmall.pms.service.impl;
 
 import com.atguigu.gmall.pms.entity.AttrEntity;
+import com.atguigu.gmall.pms.entity.SkuAttrValueEntity;
+import com.atguigu.gmall.pms.entity.SkuEntity;
 import com.atguigu.gmall.pms.mapper.AttrMapper;
+import com.atguigu.gmall.pms.mapper.SkuMapper;
+import com.atguigu.gmall.pms.vo.SaleAttrValueVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -24,6 +28,9 @@ public class SpuAttrValueServiceImpl extends ServiceImpl<SpuAttrValueMapper, Spu
 
     @Autowired
     private AttrMapper attrMapper;
+
+    @Autowired
+    private SkuMapper skuMapper;
     @Override
     public PageResultVo queryPage(PageParamVo paramVo) {
         IPage<SpuAttrValueEntity> page = this.page(

@@ -33,6 +33,22 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+
+    //根据三积分类的id查询123级的分类
+    @GetMapping("sub/{cid3}")
+    public ResponseVo<List<CategoryEntity>> queryLv123CategoriesByCid3(@PathVariable("cid3")Long cid){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryLv123CategoriesByCid3(cid);
+        return ResponseVo.ok(categoryEntities);
+    }
+
+
+    //根据一级分类查询二级三级分类
+    @GetMapping("subs/{pid}")
+    public ResponseVo<List<CategoryEntity>> queryLvl2WithSubsByPid(@PathVariable("pid") Long pid){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryLvl2WithSubsByPid(pid);
+        return ResponseVo.ok(categoryEntities);
+    }
+
     /**
      * 列表
      */

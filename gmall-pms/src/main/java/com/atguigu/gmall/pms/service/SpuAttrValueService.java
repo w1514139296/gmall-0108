@@ -1,5 +1,6 @@
 package com.atguigu.gmall.pms.service;
 
+import com.atguigu.gmall.pms.vo.SaleAttrValueVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.gmall.common.bean.PageResultVo;
 import com.atguigu.gmall.common.bean.PageParamVo;
@@ -19,5 +20,7 @@ public interface SpuAttrValueService extends IService<SpuAttrValueEntity> {
     PageResultVo queryPage(PageParamVo paramVo);
 
     List<SpuAttrValueEntity> querySearchAttrValuesBySpuId(Long cid, Long spuId);
+
+
 }
 
